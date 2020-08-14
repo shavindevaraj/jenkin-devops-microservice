@@ -3,7 +3,7 @@ pipeline {
 	stages{
 		stage('Build') {
 			steps{
-			sh "mvn --version"
+			sh 'mvn --version'
 			echo "Build"
 			}
 		}
@@ -25,7 +25,7 @@ post{
 	success{
 		echo "I will run only if u succeed"
 	}
-	faulure{
+	failure{
 		echo "I will run only if u fail"
 	}
 }
