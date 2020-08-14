@@ -1,11 +1,32 @@
-node {
-	stage('Build') {
-		echo "Build"
+pipeline {
+	agent {docker{image 'maven:3.6.3'}}
+	stages{
+		stage('Build') {
+			steps{
+			sh "mvn --version"
+			echo "Build"
+			}
+		}
+		stage('Test') {
+			steps{
+			echo "Test"
+			}
+		}
+		stage('Integration Test') {
+			steps{
+			echo "Integration Test"
+			}
+		}
+}
+post{
+	always{
+		echo "I'm awesome.I run always"
 	}
-	stage('Test') {
-		echo "Test"
+	success{
+		echo "I will run only if u succeed"
 	}
-	stage('Integration Test'){
-		echo "Integration Test"
+	faulure{
+		echo "I will run only if u fail"
 	}
+}
 }
